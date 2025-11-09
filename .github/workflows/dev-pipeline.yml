@@ -1,12 +1,6 @@
 name: dev-pipeline
-
-on: 
-  pull_request:
-    branches:
-      - main
-    paths:
-      - Environment/dev/**
-  push: 
+on:
+  push:
     branches:
       - main
     paths:
@@ -18,55 +12,34 @@ permissions:
 
 env:
   working-directory: Environment/dev
+  TF_PLUGIN_CACHE_DIR: ~/.terraform.d/plugin-cache
 
 jobs:
   terraform_Build_Job:
     name: Terraform Build & Plan
     runs-on: self-hosted
-
     steps:
-      # ---------- Checkout ----------
-      - name: Checkout
-        uses: actions/checkout@v5.0.0
+      - uses: actions/checkout@v5.0.0
 
-      # ---------- Azure Login ----------
-      - name: Azure Login (OIDC)
+      - name: Azure Login
         uses: Azure/login@v2.3.0
         with:
           client-id: ${{ secrets.AZURE_CLIENT_ID }}
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
-      # ---------- Terraform Init ----------
       - name: Terraform Init
-        id: init
         run: terraform init -input=false
         working-directory: ${{ env.working-directory }}
 
-      # ---------- Package & Upload Init Artifact ----------
-      - name: Package Init Files
-        run: |
-          cd ${{ env.working-directory }}
-          tar -czf terraform-init.tar.gz .terraform .terraform.lock.hcl
-
-      - name: Upload Init Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: terraform-init
-          path: ${{ env.working-directory }}/terraform-init.tar.gz
-
-      # ---------- Terraform Validate ----------
       - name: Terraform Validate
         run: terraform validate -no-color
         working-directory: ${{ env.working-directory }}
 
-      # ---------- Terraform Plan ----------
       - name: Terraform Plan
-        id: plan
         run: terraform plan -no-color -input=false -out=tfplan
         working-directory: ${{ env.working-directory }}
 
-      # ---------- Upload Plan Artifact ----------
       - name: Upload Plan Artifact
         uses: actions/upload-artifact@v4
         with:
@@ -80,46 +53,26 @@ jobs:
     runs-on: self-hosted
     if: needs.terraform_Build_Job.result == 'success' && github.ref == 'refs/heads/main'
     environment: dev
-
     steps:
-      # ---------- Checkout ----------
-      - name: Checkout
-        uses: actions/checkout@v5.0.0
+      - uses: actions/checkout@v5.0.0
 
-      # ---------- Azure Login ----------
-      - name: Azure Login (OIDC)
+      - name: Azure Login
         uses: Azure/login@v2.3.0
-        with: 
+        with:
           client-id: ${{ secrets.AZURE_CLIENT_ID }}
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
-      # ---------- Download Init Artifact ----------
-      - name: Download Init Artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: terraform-init
-          path: ${{ env.working-directory }}
-
-      # ---------- Extract Init Files ----------
-      - name: Extract Init Files
-        run: |
-          cd ${{ env.working-directory }}
-          tar -xzf terraform-init.tar.gz
-
-      # ---------- Download Plan Artifact ----------
       - name: Download Plan Artifact
         uses: actions/download-artifact@v4
         with:
           name: terraform-plan
           path: ${{ env.working-directory }}
 
-      # ---------- Terraform Re-Init ----------
-      - name: Terraform Init (Reconfigure)
+      - name: Terraform Init
         run: terraform init -input=false -reconfigure
         working-directory: ${{ env.working-directory }}
 
-      # ---------- Terraform Apply ----------
       - name: Terraform Apply
         run: terraform apply -auto-approve tfplan
         working-directory: ${{ env.working-directory }}
