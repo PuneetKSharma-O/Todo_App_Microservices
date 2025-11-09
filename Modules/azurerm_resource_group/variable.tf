@@ -3,6 +3,6 @@ variable "resource_group" {
     name       = "string"
     location   = "string"
     managed_by = optional("string")
-    tags       = optional(object("string"))
+    tags       = optional(map(string))
   }))
 }
