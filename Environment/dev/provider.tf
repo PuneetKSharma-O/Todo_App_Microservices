@@ -7,9 +7,9 @@ terraform {
   }
   backend "azurerm" {
     storage_account_name = "monotodostg1234"
-    resource_group_name = "todo-rg"
-    container_name = "todo-cnt"
-    key = "dev.todomicro.tfstate"
+    resource_group_name  = "todo-rg"
+    container_name       = "todo-cnt"
+    key                  = "dev.todomicro.tfstate"
   }
 }
 
