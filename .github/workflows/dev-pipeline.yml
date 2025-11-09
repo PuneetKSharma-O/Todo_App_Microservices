@@ -26,9 +26,9 @@ jobs:
       - name: Azure Login
         uses: Azure/login@v2.3.0
         with:
-          client-id: e8603241-474b-4633-bb9c-6ec410cf1e6d
-          tenant-id: 5a2c20bc-546f-43e0-b1a8-41fcb1f0c95c
-          subscription-id: 470e0441-3f52-4fdf-8fc5-508cd114ccbc
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
       - name: Terraform_fmt
         id: fmt
