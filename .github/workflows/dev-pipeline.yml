@@ -12,7 +12,6 @@ permissions:
 
 env:
   working-directory: Environment/dev
-  TF_PLUGIN_CACHE_DIR: ~/.terraform.d/plugin-cache
 
 jobs:
   terraform_Build_Job:
@@ -45,7 +44,6 @@ jobs:
         with:
           name: terraform-plan
           path: ${{ env.working-directory }}/tfplan
-
 
   terraform_Deploy_Job:
     name: Terraform Apply (Deploy)

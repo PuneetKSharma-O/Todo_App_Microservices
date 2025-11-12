@@ -1,0 +1,31 @@
+name: Delete-Task
+on: workflow_dispatch
+permissions:
+    id-token: write
+    contents: read
+env:
+    ACR_NAME: todomicroservicesacr1234
+    Image_name: todo-app
+    Image_tag: latest
+    WORKING_DIR: ./Delete-task
+
+jobs:
+    add_task_job:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v5.0.0
+
+            - name: Azure Login
+              uses: Azure/login@v2.3.0
+              with:
+                  client-id: ${{ secrets.AZURE_CLIENT_ID }}
+                  tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+                  subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+            - name: build and push todo app microservice docker image
+              working-directory: ${{ env.WORKING_DIR }}
+              run: |
+                  az acr login --name $ACR_NAME
+                  docker build -t $ACR_NAME.azurecr.io/$Image_name:$Image_tag .
+                  docker push $ACR_NAME.azurecr.io/$Image_name:$Image_tag
