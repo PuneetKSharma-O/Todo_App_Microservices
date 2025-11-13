@@ -1,9 +1,13 @@
 name: Micro-todo-ui
-on:   
-  push:
+on:
+  workflow_run:
+    workflows: [dev-pipeline]
+    types:
+      - completed
     branches:
       - main
       
+
 permissions:
     id-token: write
     contents: read
