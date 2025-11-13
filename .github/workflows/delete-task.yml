@@ -10,7 +10,7 @@ env:
     WORKING_DIR: ./Delete-task
 
 jobs:
-    add_task_job:
+    Delete_Task_job:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout repository
