@@ -7,7 +7,7 @@ env:
     ACR_NAME: todomicroservicesacr1234
     Image_name: todo-ui-app
     Image_tag: latest
-    WORKING_DIR: ./todo-ui
+    WORKING_DIR: ./Micro-todo-ui
 
 jobs:
     add_task_job:
