@@ -4,7 +4,7 @@ metadata:
   name: delete-task-ingress
 
 spec:
-  inggressClassName: azure-application-gateway
+  ingressClassName: azure-application-gateway
   rules:
     - host: deletetask.puneetdevops.online
       http:

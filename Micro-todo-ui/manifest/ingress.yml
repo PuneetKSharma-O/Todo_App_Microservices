@@ -5,6 +5,7 @@ metadata:
   labels:
     app.kubernetes.io/name: todo-ui-app-ingress
 spec:
+  ingressClassName: azure-application-gateway
   rules:
   - host: puneetdevops.online
     http:
