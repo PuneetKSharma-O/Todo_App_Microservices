@@ -9,9 +9,9 @@ spec:
     repoURL: 'https://github.com/PuneetKSharma-O/Todo_App_Microservices.git'
     targetRevision: main
     path: ./Micro-todo-ui/manifest/
-    destination:
-      server: 'https://kubernetes.default.svc'
-      namespace: default
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: default
   syncPolicy:
     automated:
       prune: true
@@ -29,9 +29,9 @@ spec:
     repoURL: 'https://github.com/PuneetKSharma-O/Todo_App_Microservices.git'
     targetRevision: main
     path: ./Add-Task/manifest/
-    destination:
-      server: 'https://kubernetes.default.svc'
-      namespace: default
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: default
   syncPolicy:
     automated:
       prune: true
@@ -48,9 +48,9 @@ spec:
     repoURL: 'https://github.com/PuneetKSharma-O/Todo_App_Microservices.git'
     targetRevision: main
     path: ./Delete-task/manifest/
-    destination:
-      server: 'https://kubernetes.default.svc'
-      namespace: default
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: default
   syncPolicy:
     automated:
       prune: true
@@ -59,17 +59,17 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: my-todo-Get-Task-application
+  name: my-todo-get-task-application
   namespace: argocd
 spec:
   project: default
   source:
     repoURL: 'https://github.com/PuneetKSharma-O/Todo_App_Microservices.git'
     targetRevision: main
-    path: ./Get-Taskmanifest/
-    destination:
-      server: 'https://kubernetes.default.svc'
-      namespace: default
+    path: ./Get-Task/manifest/
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: default
   syncPolicy:
     automated:
       prune: true
