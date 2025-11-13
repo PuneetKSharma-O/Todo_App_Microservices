@@ -1,11 +1,5 @@
 name: dev-pipeline
-on:
-  pull_request:
-    branches:
-      - main
-    paths:
-      - Environment/dev/**
-      
+on:   
   push:
     branches:
       - main
