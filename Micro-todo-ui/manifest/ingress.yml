@@ -2,8 +2,6 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: todo-ui-app-ingress
-  labels:
-    app.kubernetes.io/name: todo-ui-app-ingress
 spec:
   ingressClassName: azure-application-gateway
   rules:
