@@ -5,6 +5,7 @@ metadata:
   labels:
     app.kubernetes.io/name: myingress
 spec:
+  ingressClassName: azure-application-gateway
   rules:
   - host: gettask.puneetdevops.online
     http:
