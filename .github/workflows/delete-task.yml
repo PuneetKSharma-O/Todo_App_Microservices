@@ -1,6 +1,13 @@
 name: Delete-Task
-on: workflow_dispatch
-      
+on:
+  workflow_run:
+    workflows:
+        - dev-pipeline
+    branches:
+        - main
+    types:
+        - completed
+
 permissions:
     id-token: write
     contents: read

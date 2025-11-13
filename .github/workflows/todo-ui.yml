@@ -1,5 +1,12 @@
 name: Micro-todo-ui
-on: workflow_dispatch
+on:
+  workflow_run:
+    workflows:
+        - dev-pipeline
+    branches:
+        - main
+    types:
+        - completed
       
 
 permissions:
