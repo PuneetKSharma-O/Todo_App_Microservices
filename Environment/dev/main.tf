@@ -18,15 +18,15 @@ module "acr" {
   source     = "../../Modules/azurerm_acr"
   acr        = var.acr
 }
-module "sql_db_server" {
-  depends_on    = [module.resource_group]
-  source        = "../../Modules/azurerm_sql_server"
-  sql_db_server = var.sql_db_server
-}
-module "sql_db" {
-  depends_on    = [module.sql_db_server]
-  source        = "../../Modules/azurerm_sql_database"
-  sql_db        = var.sql_db 
-  sql_db_server = module.sql_db_server.sql_db_server
-}
+# module "sql_db_server" {
+#   depends_on    = [module.resource_group]
+#   source        = "../../Modules/azurerm_sql_server"
+#   sql_db_server = var.sql_db_server
+# }
+# module "sql_db" {
+#   depends_on    = [module.sql_db_server]
+#   source        = "../../Modules/azurerm_sql_database"
+#   sql_db        = var.sql_db 
+#   sql_db_server = module.sql_db_server.sql_db_server
+# }
 
