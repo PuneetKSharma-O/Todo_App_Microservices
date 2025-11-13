@@ -16,4 +16,4 @@ spec:
         - name: add-task-deployment
           image: todomicroservicesacr1234.azurecr.io/add-todo-app:latest
           ports:
-            - containerPort: 80
+            - containerPort: 8000
