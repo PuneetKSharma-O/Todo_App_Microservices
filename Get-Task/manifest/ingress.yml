@@ -6,7 +6,7 @@ metadata:
     app.kubernetes.io/name: myingress
 spec:
   rules:
-  - host: Get-Task.puneetdevops.online
+  - host: gettask.puneetdevops.online
     http:
       paths:
       - pathType: Prefix
