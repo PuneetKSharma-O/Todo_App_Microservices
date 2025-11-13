@@ -5,7 +5,7 @@ permissions:
     contents: read
 env:
     ACR_NAME: todomicroservicesacr1234
-    Image_name: todo-app
+    Image_name: delete-todo-app
     Image_tag: latest
     WORKING_DIR: ./Delete-task
 
