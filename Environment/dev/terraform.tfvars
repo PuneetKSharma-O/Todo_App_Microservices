@@ -55,22 +55,22 @@ acr = {
   }
 }
 
-# sql_db_server = {
-#   "sqlserver1" = {
-#     name                = "devtodomicrosqlsvr1234"
-#     resource_group_name = "rg-dev1"
-#     location            = "centralindia"
-#     administrator_login = "sqladminuser"
-#     administrator_login_password = "P@ssw0rd1234!"
-#     version             = "12.0"
-#     tags = {
-#       environment = "dev"
-#       project     = "todo-app"
-#     }
-#   }
-# }
-# sql_db = {
-#   "sqlserver1" = {
-#     name      = "devtodomicrosqldb1234"
-#   }
-# }
+sql_db_server = {
+  "sqlserver1" = {
+    name                = "devtodomicrosqlsvr1234"
+    resource_group_name = "rg-dev1"
+    location            = "centralindia"
+    administrator_login = "sqladminuser"
+    administrator_login_password = "P@ssw0rd1234!"
+    version             = "12.0"
+    tags = {
+      environment = "dev"
+      project     = "todo-app"
+    }
+  }
+}
+sql_db = {
+  "sqlserver1" = {
+    name      = "devtodomicrosqldb1234"
+  }
+}

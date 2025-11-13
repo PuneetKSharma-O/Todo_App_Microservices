@@ -1,11 +1,5 @@
 name: Add-Task
-on:
-  workflow_run:
-    workflows: [dev-pipeline]
-    types:
-      - completed
-    branches:
-      - main
+on: workflow_dispatch
       
 permissions:
     id-token: write
