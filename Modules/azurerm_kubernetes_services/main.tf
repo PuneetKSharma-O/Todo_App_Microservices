@@ -23,9 +23,9 @@ resource "azurerm_kubernetes_cluster" "aks" {
 
 
 resource "azurerm_role_assignment" "aks_to_acr_role" {
-  for_each             = var.kubernetes_cluster
-  scope                = var.acr[each.key]
-  role_definition_name = "AcrPull"
+  for_each                         = var.kubernetes_cluster
+  scope                            = var.acr[each.key]
+  role_definition_name             = "AcrPull"
   principal_id                     = azurerm_kubernetes_cluster.aks[each.key].kubelet_identity[0].object_id
   skip_service_principal_aad_check = true
 }

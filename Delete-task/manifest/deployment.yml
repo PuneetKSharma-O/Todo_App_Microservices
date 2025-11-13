@@ -17,3 +17,6 @@ spec:
         image: todomicroservicesacr1234.azurecr.io/delete-todo-app:latest
         ports:
         - containerPort: 8000
+        env:
+            - name: ConnectionStrings__TodoDatabase
+              value: "Driver={ODBC Driver 18 for SQL Server};Server=tcp:devtodomicrosqlsvr1234.database.windows.net,1433;Database=devtodomicrosqldb1234;Uid=sqladminuser;Pwd=P@ssw0rd1234!;Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;"
