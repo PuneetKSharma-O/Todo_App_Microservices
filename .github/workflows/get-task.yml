@@ -1,12 +1,5 @@
 name: Get-Task
-on:
-  workflow_run:
-    workflows:
-        - dev-pipeline
-    branches:
-        - main
-    types:
-        - completed
+on: workflow_dispatch
 
 permissions:
     id-token: write
